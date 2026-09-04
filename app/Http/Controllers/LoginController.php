@@ -4,10 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class LoginController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('guest', only:['index', 'store'])
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -34,7 +43,7 @@ class LoginController extends Controller
         if (Auth::attempt($loginRequest->safe()->only(['email', 'password']))) {
             $loginRequest->session()->regenerate();
 
-            return back()->with('success', 'Login realizado com sucesso!');
+            return redirect()->route('home.index');
         }
 
         return back()->withErrors([
