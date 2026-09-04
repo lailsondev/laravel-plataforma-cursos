@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -27,9 +29,17 @@ class LoginController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LoginRequest $loginRequest)
     {
-        //
+        if (Auth::attempt($loginRequest->safe()->only(['email', 'password']))) {
+            $loginRequest->session()->regenerate();
+
+            return back()->with('success', 'Login realizado com sucesso!');
+        }
+
+        return back()->withErrors([
+            'error' => 'Usuário ou senha incorreto!'
+        ])->onlyInput('email');
     }
 
     /**
@@ -59,8 +69,14 @@ class LoginController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home.index');
     }
 }

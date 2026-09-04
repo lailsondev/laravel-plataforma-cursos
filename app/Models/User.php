@@ -51,4 +51,33 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reply::class);
     }
+
+    public function getAvatarColorAttribute(): string
+    {
+        $colors = [
+            'bg-indigo-600',
+            'bg-blue-600',
+            'bg-green-600',
+            'bg-purple-600',
+            'bg-pink-600',
+            'bg-yellow-600',
+            'bg-red-600',
+            'bg-orange-600',
+        ];
+
+        return $colors[$this->id % count($colors)];
+    }
+
+    public function getInitialsAttribute(): string
+    {
+        $first = mb_substr($this->firstName ?? '', 0, 1);
+        $last = mb_substr($this->lastName ?? '', 0, 1);
+
+        return strtoupper($first . $last);
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }
