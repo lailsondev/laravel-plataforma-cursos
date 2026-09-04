@@ -1,0 +1,84 @@
+@extends('layout')
+
+@section('fullwidth')
+
+    <div class="w-full bg-black">
+        <div class="aspect-video max-w-screen-2xl mx-auto">
+            <iframe
+                class="w-full h-full"
+                src="https://www.youtube.com/embed/rqtZ0EmciJ8?si=AQgOSlbeJHR_fPUP"
+                title="Aula"
+                frameborder="0"
+                allowfullscreen
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- Navegação de aulas -->
+    <div class="w-full bg-white border-t border-b">
+        <div class="max-w-screen-2xl mx-auto flex justify-between items-center px-4 py-4">
+            <a
+                href="#"
+                class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
+            >
+                ← Aula Anterior
+            </a>
+            <a
+                href="#"
+                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+                Próxima Aula →
+            </a>
+        </div>
+    </div>
+@endsection
+
+@section('content')
+    <div class="md:col-span-2 space-y-6">
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h1 class="text-2xl font-semibold mb-2">Aula: Trabalhando com Eloquent ORM</h1>
+            <p class="text-gray-700">
+                Nesta aula, aprendemos como o Eloquent facilita o mapeamento entre tabelas e classes no Laravel.
+            </p>
+        </div>
+
+        <!-- Comentários -->
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-lg font-semibold mb-4">Comentários</h2>
+
+            <!-- Formulário -->
+            <form class="mb-4">
+        <textarea
+            class="w-full border rounded-lg p-3"
+            rows="3"
+            placeholder="Deixe seu comentário..."
+        ></textarea>
+                <button class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg">
+                    Enviar
+                </button>
+            </form>
+
+            <!-- Lista de comentários -->
+            <div class="space-y-4">
+                <div class="border-b pb-4">
+                    <p class="font-semibold">Alexandre Cardoso</p>
+                    <p class="text-gray-600">Excelente explicação sobre o Eloquent!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside>
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h3 class="text-lg font-semibold mb-4">Aulas do Curso</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="text-indigo-600 hover:underline">1. Introdução</a></li>
+                <li><a href="#" class="text-indigo-600 hover:underline">2. Instalação</a></li>
+                <li><a href="#" class="text-indigo-600 hover:underline">3. Eloquent ORM</a></li>
+                <li><a href="#" class="text-indigo-600 hover:underline">4. Blade Templates</a></li>
+            </ul>
+        </div>
+    </aside>
+
+@endsection
