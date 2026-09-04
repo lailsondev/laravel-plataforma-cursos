@@ -18,7 +18,8 @@ class PurchaseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'amount' => $this->faker->randomFloat(2, 49, 499),
+            'payment_status' => $this->faker->randomElement(['paid', 'pending', 'failed']),
         ];
     }
 }

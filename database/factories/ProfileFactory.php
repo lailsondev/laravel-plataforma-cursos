@@ -18,7 +18,9 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'avatar' => $this->faker->imageUrl(200, 200, 'people'),
+            'linkedin' => $this->faker->userName(),
+            'bio' => $this->faker->sentence(12),
         ];
     }
 }

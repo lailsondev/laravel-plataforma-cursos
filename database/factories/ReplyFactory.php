@@ -18,7 +18,7 @@ class ReplyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'content' => $this->faker->sentence(8),
         ];
     }
 }
