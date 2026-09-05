@@ -2,42 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class EmailVerifyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('auth.verify-email');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function send(Request $request)
     {
-        return view('user.create');
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('success', 'Link de verificação enviado!');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserRequest $userRequest)
+    public function verify(EmailVerificationRequest $request)
     {
-        $data = $userRequest->validated();
-
-        $user = User::create($data);
-
-        Auth::login($user);
-
-        event(new Registered($user));
+        $request->fulfill();
 
         return redirect()->route('home.index');
     }
