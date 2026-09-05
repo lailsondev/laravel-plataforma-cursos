@@ -22,6 +22,7 @@
 /storage/pail
 /templates
 /resources/views/vendor/
+/storage/debugbar/
 /vendor
 _ide_helper.php
 Homestead.json
