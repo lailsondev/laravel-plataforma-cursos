@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $courses = Course::limit(8)->latest('id')->get();
 
-        return view('home', [
+        return view('home.index', [
                 'title' => 'Início',
                 'courses' => $courses,
             ],
