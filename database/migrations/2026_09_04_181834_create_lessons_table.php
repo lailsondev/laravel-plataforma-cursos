@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->string('title');
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->string('video_url');
             $table->timestamps();
         });
