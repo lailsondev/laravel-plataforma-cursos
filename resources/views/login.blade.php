@@ -7,11 +7,17 @@
             @guest
             <h1 class="text-3xl font-bold text-center mb-6">Entrar na sua conta</h1>
 
-            @if ($errors->has('error'))
-                <div class="bg-red-600 text-white text-center italic p-2 text-sm mb-2">
-                    {{ $errors->first('error') }}
-                </div>
-            @endif
+                @if ($errors->has('error'))
+                    <div class="bg-red-600 text-white text-center italic p-2 text-sm mb-2">
+                        {{ $errors->first('error') }}
+                    </div>
+                @endif
+
+                @if ($errors->has('forgot'))
+                    <div class="bg-red-600 text-white text-center italic p-2 text-sm mb-2">
+                        {{ $errors->first('forgot') }}
+                    </div>
+                @endif
 
             <form method="POST" action="{{ route('logar.store') }}" class="space-y-5">
                 @csrf
@@ -55,7 +61,7 @@
                         <input type="checkbox" name="remember" class="text-indigo-600 rounded">
                         <span class="text-sm text-gray-600">Lembrar-me</span>
                     </label>
-                    <a href="#" class="text-sm text-indigo-600 hover:underline">
+                    <a href="{{ route('forgot-password.index') }}" class="text-sm text-indigo-600 hover:underline">
                         Esqueci minha senha
                     </a>
                 </div>
