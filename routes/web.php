@@ -9,6 +9,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -17,6 +18,15 @@ Route::get('/cursos', [CoursesController::class, 'index'])->name('courses.index'
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::get('/aula', [LessonController::class, 'index'])->name('lesson.index');
 Route::get('/contato', [ContactController::class, 'index'])->name('contact.index');
+
+Route::controller(UserController::class)
+    ->prefix('usuario')
+    ->name('user.')
+    ->group(function () {
+    Route::get('/cadastrar', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+})->middleware('guest');
+
 Route::resource('logar', LoginController::class)->only([
     'index', 'store'
 ]);
