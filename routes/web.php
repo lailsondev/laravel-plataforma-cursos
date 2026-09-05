@@ -14,7 +14,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/curso', [CourseController::class, 'index'])->name('course.index')->middleware('verified');
+Route::get('/curso/{course:slug}', [CourseController::class, 'show'])->name('course.show');
 Route::get('/cursos', [CoursesController::class, 'index'])->name('courses.index');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::get('/aula', [LessonController::class, 'index'])->name('lesson.index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,8 +12,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home',
-            ['title' => 'Início']
+        $courses = Course::limit(8)->latest('id')->get();
+
+        return view('home', [
+                'title' => 'Início',
+                'courses' => $courses,
+            ],
         );
     }
 

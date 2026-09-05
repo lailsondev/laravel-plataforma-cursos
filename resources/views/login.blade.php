@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="md:col-span-3 flex justify-center items-center">
+    <div class="md:col-span-4 flex justify-center items-center">
         <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
             @guest
             <h1 class="text-3xl font-bold text-center mb-6">Entrar na sua conta</h1>
