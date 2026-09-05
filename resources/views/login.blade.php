@@ -78,7 +78,7 @@
             <!-- Cadastro -->
             <p class="text-sm text-center text-gray-600 mt-6">
                 Ainda não tem conta?
-                <a href="#" class="text-indigo-600 hover:underline font-medium">
+                <a href="{{ route('user.create') }}" class="text-indigo-600 hover:underline font-medium">
                     Cadastre-se
                 </a>
             </p>
