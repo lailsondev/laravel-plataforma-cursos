@@ -37,7 +37,7 @@ class ForgotPasswordController extends Controller
 
         return $status === Password::ResetLinkSent
             ? back()->with(['sent' => __($status)])
-            : back()->withErrors(['error' => __($status)]);
+            : back()->withErrors(['errors' => __($status)]);
     }
 
     /**
@@ -82,7 +82,7 @@ class ForgotPasswordController extends Controller
 
         return $status === Password::PasswordReset
             ? redirect()->route('logar.index')->with('forgot', __($status))
-            : back()->withErrors(['error' => __($status)]);
+            : back()->withErrors(['errors' => __($status)]);
     }
 
     /**

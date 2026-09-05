@@ -15,8 +15,8 @@
         <div class="bg-green-600 text-white text-center p-2 mb-3 rounded">{{ $value }}</div>
         @endsession
 
-        @if ($errors->has('error'))
-            <div class="bg-red-600 text-white text-center p-2 mb-3 rounded">{{ $errors->first('error') }}</div>
+        @if ($errors->has('errors'))
+            <div class="bg-red-600 text-white text-center p-2 mb-3 rounded">{{ $errors->first('errors') }}</div>
         @endif
 
         <form action="{{ route('forgot-password.store') }}" method="POST" class="space-y-6">

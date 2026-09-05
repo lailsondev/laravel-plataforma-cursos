@@ -5,8 +5,8 @@
         <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
             <h1 class="text-3xl font-bold text-center mb-6">Alterar sua senha</h1>
 
-            @if ($errors->has('error'))
-                <div class="bg-red-600 text-white text-center p-2 mb-3 rounded">{{ $errors->first('error') }}</div>
+            @if ($errors->has('errors'))
+                <div class="bg-red-600 text-white text-center p-2 mb-3 rounded">{{ $errors->first('errors') }}</div>
             @endif
 
             <form method="POST" action="{{ route('forgot-password.update') }}" class="space-y-5">

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="bg-white rounded-2xl shadow p-8 md:col-span-3 text-center">
+    <div class="bg-white rounded-2xl shadow p-8 md:col-span-4 text-center">
 
         <h1 class="text-9xl font-extrabold text-indigo-600">404</h1>
 

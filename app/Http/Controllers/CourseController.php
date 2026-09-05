@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -37,8 +38,11 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         $course->load('lessons');
+        $canAccess = Auth::user()?->can('access', $course);
+
         return view('course.show', [
                 'title' => 'Curso',
+                'canAccess' => $canAccess,
                 'course' => $course,
             ]
         );

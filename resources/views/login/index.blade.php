@@ -7,9 +7,9 @@
             @guest
                 <h1 class="text-3xl font-bold text-center mb-6">Entrar na sua conta</h1>
 
-                @if ($errors->has('error'))
+                @if ($errors->has('errors'))
                     <div class="bg-red-600 text-white text-center italic p-2 text-sm mb-2">
-                        {{ $errors->first('error') }}
+                        {{ $errors->first('errors') }}
                     </div>
                 @endif
 

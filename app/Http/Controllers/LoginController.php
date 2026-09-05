@@ -47,7 +47,7 @@ class LoginController extends Controller implements HasMiddleware
         }
 
         return back()->withErrors([
-            'error' => 'Usuário ou senha incorreto!'
+            'errors' => 'Usuário ou senha incorreto!'
         ])->onlyInput('email');
     }
 
