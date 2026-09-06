@@ -18,7 +18,7 @@ Route::get('/curso/{course:slug}', [CourseController::class, 'show'])->name('cou
 Route::get('/cursos', [CoursesController::class, 'index'])->name('courses.index');
 
 Route::get('/curso/{course:slug}/aula/{lesson:slug}', [LessonController::class, 'show'])
-    ->middleware('can:access,course')
+    ->middleware('can:access,course,lesson')
     ->name('lesson.show');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
