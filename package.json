@@ -17,6 +17,7 @@
         "@laravel/multiplex": "^0.4.1"
     },
     "dependencies": {
+        "@tailwindplus/elements": "^1.0.22",
         "alpinejs": "^3.17.1"
     }
 }
