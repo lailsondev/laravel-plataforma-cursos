@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layout')
 
 @section('fullwidth')
@@ -17,18 +18,8 @@
     <!-- Navegação de aulas -->
     <div class="w-full bg-white border-t border-b">
         <div class="max-w-screen-2xl mx-auto flex justify-between items-center px-4 py-4">
-            <a
-                href="#"
-                class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
-            >
-                ← Aula Anterior
-            </a>
-            <a
-                href="#"
-                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            >
-                Próxima Aula →
-            </a>
+            <x-navigate-between-lessons :course="$course" :action="$previous" id="previous" />
+            <x-navigate-between-lessons :course="$course" :action="$next" id="next" />
         </div>
     </div>
 @endsection
