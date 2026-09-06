@@ -10,7 +10,9 @@ class LessonService
     public function getLessonData(Course $course, Lesson $lesson)
     {
         $lesson->load([
-            'comments.user', 'comments.replies.user'
+            'comments' => fn($q) => $q->latest('id'),
+            'comments.user',
+            'comments.replies.user'
         ]);
 
         $course->load('lessons');

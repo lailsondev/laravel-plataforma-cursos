@@ -42,7 +42,7 @@ Route::resource('logar', LoginController::class)->only([
 ]);
 Route::delete('/deslogar', [LoginController::class, 'destroy'])->name('logar.destroy');
 
-Route::post('/comentario', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/comentario/{id}', [CommentController::class, 'store'])->name('comment.store');
 
 Route::controller(ForgotPasswordController::class)->group(function () {
     Route::get('/esqueci-senha', 'index')->name('forgot-password.index');

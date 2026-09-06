@@ -34,19 +34,32 @@
         </div>
 
         <!-- Comentários -->
+        <a href="" id="comment"></a>
         <div class="bg-white rounded-2xl shadow p-6">
             <h2 class="text-lg font-semibold mb-4">Comentários ({{ $lesson->comments->count() }})</h2>
 
             <!-- Formulário -->
-            @can('comment')
-            <form class="mb-4" method="POST" action="{{ route('comment.store', $lesson) }}">
+            @can('comment', $lesson)
+                @error('comment')
+                <div class="bg-red-600 text-white text-center rounded p-2 bm-3">
+                    {{ $message }}
+                </div>
+                @enderror
+
+                @session('success')
+                <div class="bg-green-600 text-white text-center rounded p-2 bm-3">
+                    {{ $value }}
+                </div>
+                @endsession
+            <form class="mb-4" method="POST" action="{{ route('comment.store', $lesson) }} #comment">
                 @csrf
-                <textarea name="comment"
+                <textarea
+                    name="comment"
                     class="w-full border rounded-lg p-3"
                     rows="3"
                     placeholder="Deixe seu comentário..."
                 ></textarea>
-                <button type="submit" class="cursor-pointer mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg">
+                <button type="submit" class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg cursor-pointer">
                     Enviar
                 </button>
             </form>
