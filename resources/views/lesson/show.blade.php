@@ -38,16 +38,19 @@
             <h2 class="text-lg font-semibold mb-4">Comentários ({{ $lesson->comments->count() }})</h2>
 
             <!-- Formulário -->
-            <form class="mb-4">
-                <textarea
+            @can('comment')
+            <form class="mb-4" method="POST" action="{{ route('comment.store', $lesson) }}">
+                @csrf
+                <textarea name="comment"
                     class="w-full border rounded-lg p-3"
                     rows="3"
                     placeholder="Deixe seu comentário..."
                 ></textarea>
-                <button class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg">
+                <button type="submit" class="cursor-pointer mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg">
                     Enviar
                 </button>
             </form>
+            @endcan
 
             <!-- Lista de comentários -->
             @foreach($lesson->comments as $comment)

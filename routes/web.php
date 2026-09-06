@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CoursesController;
@@ -41,6 +42,7 @@ Route::resource('logar', LoginController::class)->only([
 ]);
 Route::delete('/deslogar', [LoginController::class, 'destroy'])->name('logar.destroy');
 
+Route::post('/comentario', [CommentController::class, 'store'])->name('comment.store');
 
 Route::controller(ForgotPasswordController::class)->group(function () {
     Route::get('/esqueci-senha', 'index')->name('forgot-password.index');
