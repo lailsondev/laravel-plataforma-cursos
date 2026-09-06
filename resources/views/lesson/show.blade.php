@@ -39,7 +39,8 @@
             <h2 class="text-lg font-semibold mb-4">Comentários ({{ $lesson->comments->count() }})</h2>
 
             <!-- Formulário -->
-            @can('comment', $lesson)
+            @if($canComment)
+                <x-modal-reply />
                 @error('comment')
                 <div class="bg-red-600 text-white text-center rounded p-2 bm-3">
                     {{ $message }}
@@ -63,7 +64,7 @@
                     Enviar
                 </button>
             </form>
-            @endcan
+            @endif
 
             <!-- Lista de comentários -->
             @foreach($lesson->comments as $comment)
@@ -74,7 +75,17 @@
                         <p class="text-gray-600 mb-2">{{ $comment->content }}</p>
 
                         <!-- Botão responder -->
-                        <button class="text-sm text-indigo-600 hover:underline">Responder</button>
+                        @if($canComment)
+                        <button
+                            command="show-modal"
+                            commandfor="dialog"
+                            x-data="{}"
+                            @click="$dispatch('modal-reply', {
+                            comment: @js($comment),
+                            replyTo: @js($comment->user->fullName)
+                            })"
+                            class="text-sm text-indigo-600 hover:underline">Responder</button>
+                        @endif
 
                         <!-- Respostas -->
                         @foreach ($comment->replies as $reply)

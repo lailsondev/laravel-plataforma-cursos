@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use Illuminate\Support\Facades\Auth;
 
 class LessonService
 {
@@ -17,6 +18,8 @@ class LessonService
 
         $course->load('lessons');
 
+        $canComment = Auth::user()?->can('comment', $lesson);
+
         $previous = $course->lessons()
             ->where('id', '<', $lesson->id)
             ->latest('id')
@@ -27,6 +30,6 @@ class LessonService
             ->oldest('id')
             ->first();
 
-        return compact('lesson', 'course', 'previous', 'next');
+        return compact('lesson', 'course', 'previous', 'next', 'canComment');
     }
 }
