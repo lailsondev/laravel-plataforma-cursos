@@ -37,9 +37,17 @@ class LessonController extends Controller
      */
     public function show(Course $course, Lesson $lesson)
     {
-        return view('lesson.show',
-            ['title' => 'Aula']
-        );
+        $lesson->load([
+            'comments.user', 'comments.replies.user'
+        ]);
+
+        $course->load('lessons');
+
+        return view('lesson.show',[
+            'title' => 'Aula',
+            'lesson' => $lesson,
+            'course' => $course,
+        ]);
     }
 
     /**

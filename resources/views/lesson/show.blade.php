@@ -36,35 +36,51 @@
 @section('content')
     <div class="md:col-span-2 space-y-6">
         <div class="bg-white rounded-2xl shadow p-6">
-            <h1 class="text-2xl font-semibold mb-2">Aula: Trabalhando com Eloquent ORM</h1>
+            <h1 class="text-2xl font-semibold mb-2">Aula: {{ $lesson->title }}</h1>
             <p class="text-gray-700">
-                Nesta aula, aprendemos como o Eloquent facilita o mapeamento entre tabelas e classes no Laravel.
+                {{ $lesson->description }}
             </p>
         </div>
 
         <!-- Comentários -->
         <div class="bg-white rounded-2xl shadow p-6">
-            <h2 class="text-lg font-semibold mb-4">Comentários</h2>
+            <h2 class="text-lg font-semibold mb-4">Comentários ({{ $lesson->comments->count() }})</h2>
 
             <!-- Formulário -->
             <form class="mb-4">
-        <textarea
-            class="w-full border rounded-lg p-3"
-            rows="3"
-            placeholder="Deixe seu comentário..."
-        ></textarea>
+                <textarea
+                    class="w-full border rounded-lg p-3"
+                    rows="3"
+                    placeholder="Deixe seu comentário..."
+                ></textarea>
                 <button class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg">
                     Enviar
                 </button>
             </form>
 
             <!-- Lista de comentários -->
-            <div class="space-y-4">
-                <div class="border-b pb-4">
-                    <p class="font-semibold">Alexandre Cardoso</p>
-                    <p class="text-gray-600">Excelente explicação sobre o Eloquent!</p>
+            @foreach($lesson->comments as $comment)
+                <div class="space-y-6">
+                    <!-- Comentário principal -->
+                    <div class="border-b pb-4">
+                        <p class="font-semibold">{{ $comment->user->fullName }} <small title="{{ $comment->created_at->translatedFormat('d \d\e F \d\e Y \à\s H:i') }}">{{ $comment->created_at->diffForHumans() }}</small></p>
+                        <p class="text-gray-600 mb-2">{{ $comment->content }}</p>
+
+                        <!-- Botão responder -->
+                        <button class="text-sm text-indigo-600 hover:underline">Responder</button>
+
+                        <!-- Respostas -->
+                        @foreach ($comment->replies as $reply)
+                            <div class="ml-6 mt-3 space-y-3 border-l border-gray-200 pl-4">
+                                <div>
+                                    <p class="font-semibold text-sm">{{ $reply->user->fullName }} <small title="{{ $reply->created_at->translatedFormat('d \d\e F \d\e Y \à\s H:i') }}">{{ $reply->created_at->diffForHumans() }}</small></p>
+                                    <p class="text-gray-600 text-sm">{{ $reply->content }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -73,10 +89,9 @@
         <div class="bg-white rounded-2xl shadow p-6">
             <h3 class="text-lg font-semibold mb-4">Aulas do Curso</h3>
             <ul class="space-y-2">
-                <li><a href="#" class="text-indigo-600 hover:underline">1. Introdução</a></li>
-                <li><a href="#" class="text-indigo-600 hover:underline">2. Instalação</a></li>
-                <li><a href="#" class="text-indigo-600 hover:underline">3. Eloquent ORM</a></li>
-                <li><a href="#" class="text-indigo-600 hover:underline">4. Blade Templates</a></li>
+                @foreach($course->lessons as $key => $lesson)
+                <li><a href="{{ route('lesson.show', [$course->slug, $lesson->slug]) }}" class="text-indigo-600 hover:underline">{{ $key + 1 }}. {{ $lesson->title }}</a></li>
+                @endforeach
             </ul>
         </div>
     </aside>
