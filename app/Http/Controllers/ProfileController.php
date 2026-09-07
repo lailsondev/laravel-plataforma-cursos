@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Profile;
 use App\Services\AvatarService;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -68,7 +70,7 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function edit(): Factory|View
     {
         $profile = Profile::where('user_id', Auth::id())->first();
         $isUpdate = false;

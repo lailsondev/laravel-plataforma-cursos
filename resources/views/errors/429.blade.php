@@ -3,14 +3,14 @@
 @section('content')
     <div class="bg-white rounded-2xl shadow p-8 md:col-span-4 text-center">
 
-        <h1 class="text-9xl font-extrabold text-indigo-600">403</h1>
+        <h1 class="text-9xl font-extrabold text-indigo-600">429</h1>
 
         <p class="text-2xl font-semibold text-gray-700 mt-4">
-            Essa ação não é autorizada
+            Muitas Solicitações
         </p>
 
         <p class="text-gray-500 mt-2">
-            Você não tem permissão para acessar essa página.
+            Aguarde 1 minuto para tentar novamente.
         </p>
 
         <a

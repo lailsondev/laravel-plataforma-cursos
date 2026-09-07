@@ -67,9 +67,9 @@ Route::middleware('auth')->controller(ProfileController::class)
         Route::get('/editar', 'edit')->name('edit');
         Route::post('/salvar', 'store')->name('store');
         Route::put('/atualizar/{profile}', 'update')->name('update')
-            ->middleware('can:update,profile');
+            ->middleware('can:update,profile', 'throttle:3,1,update-profile');
         Route::put('/avatar/{profile}', 'avatar')->name('avatar')
-            ->middleware('can:update,profile');
+            ->middleware('can:update,profile', 'throttle:3,1,update-avatar');
     });
 
 Route::fallback([ErrorController::class, 'index']);
