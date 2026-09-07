@@ -1,0 +1,11 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "array_syntax": {
+            "syntax": "short"
+        }
+    },
+    "exclude": [
+        "database/"
+    ]
+}
