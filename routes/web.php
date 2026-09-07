@@ -26,6 +26,7 @@ Route::middleware('can:access,course,lesson')
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::get('/contato', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contato', [ContactController::class, 'store'])->name('contact.store')->middleware('throttle:3,1,contact');
 
 Route::get('/email/verify', [EmailVerifyController::class, 'index'])->name('verification.notice')->middleware('auth');
 Route::post('/email/verification-notification', [EmailVerifyController::class, 'send'])->name('verification.send')->middleware('auth');
