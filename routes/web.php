@@ -11,6 +11,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +43,8 @@ Route::resource('logar', LoginController::class)->only([
 ]);
 Route::delete('/deslogar', [LoginController::class, 'destroy'])->name('logar.destroy');
 
-Route::post('/comentario/{id}', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/comentario/responder', [ReplyController::class, 'store'])->middleware('auth')->name('reply.store');
+Route::post('/comentario/{id}', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
 
 Route::controller(ForgotPasswordController::class)->group(function () {
     Route::get('/esqueci-senha', 'index')->name('forgot-password.index');
