@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -13,7 +15,7 @@ class ForgotPasswordController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Factory|View
     {
         return view('auth.forgot-password');
     }
@@ -21,7 +23,7 @@ class ForgotPasswordController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): void
     {
         //
     }
@@ -43,7 +45,7 @@ class ForgotPasswordController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): void
     {
         //
     }
@@ -51,7 +53,7 @@ class ForgotPasswordController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $token)
+    public function edit(string $token): Factory|View
     {
         return view('auth.reset-password', ['token' => $token]);
     }
@@ -88,7 +90,7 @@ class ForgotPasswordController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): void
     {
         //
     }

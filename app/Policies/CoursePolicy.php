@@ -8,11 +8,11 @@ use App\Models\User;
 
 class CoursePolicy
 {
-    public function access(?User $user, Course $course, Lesson $lesson = null): bool
+    public function access(?User $user, Course $course, ?Lesson $lesson = null): bool
     {
         $isFree = $lesson?->free;
 
-        if (!$user) {
+        if (! $user) {
             return $isFree;
         }
 

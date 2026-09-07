@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -13,14 +15,14 @@ class LoginController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware('guest', only:['index', 'store'])
+            new Middleware('guest', only: ['index', 'store']),
         ];
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Factory|View
     {
         return view('login.index',
             ['title' => 'Logar']
@@ -30,7 +32,7 @@ class LoginController extends Controller implements HasMiddleware
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): void
     {
         //
     }
@@ -47,14 +49,14 @@ class LoginController extends Controller implements HasMiddleware
         }
 
         return back()->withErrors([
-            'errors' => 'Usuário ou senha incorreto!'
+            'errors' => 'Usuário ou senha incorreto!',
         ])->onlyInput('email');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): void
     {
         //
     }
@@ -62,7 +64,7 @@ class LoginController extends Controller implements HasMiddleware
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): void
     {
         //
     }
@@ -70,7 +72,7 @@ class LoginController extends Controller implements HasMiddleware
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): void
     {
         //
     }

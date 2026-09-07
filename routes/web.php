@@ -34,12 +34,12 @@ Route::controller(UserController::class)
     ->prefix('usuario')
     ->name('user.')
     ->group(function () {
-    Route::get('/cadastrar', 'create')->name('create');
-    Route::post('/', 'store')->name('store');
-})->middleware('guest');
+        Route::get('/cadastrar', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+    })->middleware('guest');
 
 Route::resource('logar', LoginController::class)->only([
-    'index', 'store'
+    'index', 'store',
 ]);
 Route::delete('/deslogar', [LoginController::class, 'destroy'])->name('logar.destroy');
 

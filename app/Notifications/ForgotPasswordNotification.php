@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -39,7 +38,7 @@ class ForgotPasswordNotification extends Notification
             ->from('no-reply@localhost', 'Lailson Dev')
             ->view('email.reset-password', [
                 'url' => $this->url,
-                'user' => $notifiable
+                'user' => $notifiable,
             ]);
     }
 

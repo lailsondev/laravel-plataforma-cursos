@@ -34,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function purchases(): hasMany
+    public function purchases(): HasMany
     {
         return $this->hasMany(Purchase::class);
     }
@@ -75,22 +75,22 @@ class User extends Authenticatable implements MustVerifyEmail
         $first = mb_substr($this->firstName ?? '', 0, 1);
         $last = mb_substr($this->lastName ?? '', 0, 1);
 
-        return strtoupper($first . $last);
+        return strtoupper($first.$last);
     }
 
     public function getFullNameAttribute(): string
     {
-        return $this->firstName . ' ' . $this->lastName;
+        return $this->firstName.' '.$this->lastName;
     }
 
     public function sendPasswordResetNotification($token): void
     {
-        $url = 'http://127.0.0.1:8000/forgot-password/' . $token;
+        $url = 'http://127.0.0.1:8000/forgot-password/'.$token;
         $this->notify(new ForgotPasswordNotification($url));
     }
 
-    public function sendEmailVerificationNotification()
+    public function sendEmailVerificationNotification(): void
     {
-        $this->notify(new VerifyEmailNotification());
+        $this->notify(new VerifyEmailNotification);
     }
 }

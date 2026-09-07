@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LessonService
 {
-    public function getLessonData(Course $course, Lesson $lesson)
+    public function getLessonData(Course $course, Lesson $lesson): array
     {
         $lesson->load([
-            'comments' => fn($q) => $q->latest('id'),
+            'comments' => fn ($q) => $q->latest('id'),
             'comments.user',
-            'comments.replies.user'
+            'comments.replies.user',
         ]);
 
         $course->load('lessons');
