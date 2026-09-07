@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,9 +64,22 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): void
+    public function update(Request $request, User $user): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required|unique:users,email,' . $user->id,
+            'password' => 'sometimes|nullable|min:6',
+        ]);
+
+        if (is_null($validated['password'])) {
+            unset($validated['password']);
+        }
+
+        $user->update($validated);
+
+        return back()->with('success-user', 'User updated successfully');
     }
 
     /**

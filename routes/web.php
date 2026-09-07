@@ -39,8 +39,8 @@ Route::controller(UserController::class)
             Route::get('/cadastrar', 'create')->name('create');
             Route::post('/', 'store')->name('store');
         });
-        Route::middleware('auth')->group(function () {
-            Route::put('/atualizar/{user}', 'update')->name('update');
+        Route::middleware(['auth', 'throttle:3,1,update-user'])->group(function () {
+            Route::put('/{user}', 'update')->name('update');
         });
     });
 
