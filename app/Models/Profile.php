@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Database\Factories\ProfileFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[Fillable(['user_id', 'linkedin', 'bio'])]
 class Profile extends Model
 {
     /** @use HasFactory<ProfileFactory> */

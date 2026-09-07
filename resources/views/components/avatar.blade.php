@@ -1,5 +1,5 @@
 @if (auth()->user()->profile?->avatar)
-    <img src="{{ asset(auth()->user()->profile->avatar) }}"
+    <img src="{{ Storage::url(auth()->user()->profile->avatar) }}"
          alt="{{ auth()->user()->firstName }}"
          class="w-8 h-8 rounded-full object-cover border border-gray-300">
 @else
