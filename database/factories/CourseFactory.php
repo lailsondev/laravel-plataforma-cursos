@@ -24,7 +24,7 @@ class CourseFactory extends Factory
         'Python' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
         'Java' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
         'C#' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg',
-        'Go' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/golang/go-original.svg',
+        'Go' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg',
         'Ruby' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg',
         'Kotlin' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
         'Swift' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
