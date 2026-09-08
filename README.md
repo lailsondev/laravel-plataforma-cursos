@@ -26,7 +26,8 @@
 
 ### Backend
 - **PHP 8.3** + **Laravel 13.17** - Framework, Eloquent, Policies, Gates, Mail, Queue
-- **MySQL 8.4** (Docker) + **Redis 7** (Cache & Queue) via `predis/predis 3.6`
+- **MySQL 8.4** (Docker) + **Redis 7** (Cache & Queue) via `predis/predis 3.6` - `QUEUE_CONNECTION=redis`, `CACHE_STORE=redis`
+- **Queue Jobs** - `UserRegisterJob implements ShouldQueue` (`tries 3`, `backoff [5,6,7]`) dispara `VerifyEmailNotification` via Redis
 - **Intervention Image 4.3** - Upload e `cover(300,300)` + `encode(PngEncoder)` para avatar
 - **Laravel Debugbar 4.4** - Debug em dev
 - **Pint + Rector** - Code style & refatoração automática
@@ -47,8 +48,8 @@
 ## ✨ Funcionalidades
 
 ### 🔐 Autenticação & Conta
-- Cadastro / Login / Logout (`LoginController`, `UserController`)
-- Verificação de e-mail (`EmailVerifyController` + `signed` middleware)
+- Cadastro / Login / Logout (`LoginController`, `UserController` + `dispatch(new UserRegisterJob)`)
+- Verificação de e-mail (`EmailVerifyController` + `signed` middleware) via `VerifyEmailNotification` (fila Redis, Mailtrap `sandbox.smtp.mailtrap.io:2525`)
 - Esqueci minha senha (`ForgotPasswordController` - token + e-mail Mailtrap)
 - `throttle:3,1` em contato, update de usuário/perfil/avatar para anti-spam
 
@@ -159,11 +160,24 @@ npm run build  # prod (gera public/build)
 ### 5. Servir
 ```bash
 php artisan serve
-# ou
+# ou (recomendado - já sobe fila + vite + logs)
 composer dev # roda serve + queue + pail + vite concorrente (concurrently)
 ```
 
 Acesse `http://localhost:8000`
+
+### 6. Fila & E-mail (importante!)
+```bash
+# Cadastro dispara UserRegisterJob (ShouldQueue) -> Redis -> Mailtrap
+# Se usar QUEUE_CONNECTION=redis, precisa worker:
+php artisan queue:work
+# ou deixe o `composer dev` rodando (já inclui queue)
+
+# Para dev sem fila (envio síncrono):
+# .env: QUEUE_CONNECTION=sync
+# php artisan config:clear
+# php artisan queue:failed # ver jobs falhados
+```
 
 **Storage link para avatar:**
 ```bash
