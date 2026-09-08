@@ -5,13 +5,15 @@
 
     <div class="w-full bg-black">
         <div class="aspect-video max-w-screen-2xl mx-auto">
-            <iframe
+            <video
                 class="w-full h-full"
-                src="https://www.youtube.com/embed/rqtZ0EmciJ8?si=AQgOSlbeJHR_fPUP"
-                title="Aula"
-                frameborder="0"
-                allowfullscreen
-            ></iframe>
+                controls
+                preload="metadata"
+                poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+            >
+                <source src="{{ $lesson->video_url }}" type="video/mp4">
+                Seu navegador não suporta vídeo HTML5.
+            </video>
         </div>
     </div>
 

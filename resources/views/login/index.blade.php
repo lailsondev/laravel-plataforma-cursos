@@ -19,7 +19,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('logar.store') }}" class="space-y-5">
+                <form method="POST" action="{{ route('login.store') }}" class="space-y-5">
                     @csrf
                     <!-- E-mail -->
                     <div class="mb-2">
