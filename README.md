@@ -22,27 +22,6 @@
 </p>
 
 ---
-
-## 📸 Demonstração
-
-> **Como gerar os prints:** rode `php artisan serve` + `npm run dev`, acesse `http://localhost:8000` e use `Win+Shift+S`. Salve em `docs/screenshots/` e substitua os placeholders abaixo. Recomendo 1280x720.
-
-| Home | Catálogo | Curso |
-|------|----------|-------|
-| ![Home](docs/screenshots/home.png) | ![Cursos](docs/screenshots/cursos.png) | ![Curso](docs/screenshots/curso.png) |
-
-| Aula + Player | Comentários + Respostas | Perfil + Avatar |
-|---------------|-------------------------|-----------------|
-| ![Aula](docs/screenshots/aula.png) | ![Comentários](docs/screenshots/comentarios.png) | ![Perfil](docs/screenshots/perfil.png) |
-
-| Login | Cadastro | Meus Cursos (área verificada) |
-|-------|----------|-------------------------------|
-| ![Login](docs/screenshots/login.png) | ![Cadastro](docs/screenshots/cadastro.png) | ![Meus Cursos](docs/screenshots/meus-cursos.png) |
-
-> **Dica LinkedIn:** poste em carrossel (4-5 imagens) - capa Home + Aula com comentários + Perfil avatar + código (Policy/Service). Algoritmo entrega 3x mais.
-
----
-
 ## 🚀 Tecnologias
 
 ### Backend
