@@ -11,6 +11,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MyCoursesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/curso/{course:slug}', [CourseController::class, 'show'])->name('course.show');
 Route::get('/cursos', [CoursesController::class, 'index'])->name('courses.index');
+Route::get('/meus-cursos', [MyCoursesController::class, 'index'])->middleware(['auth', 'verified'])->name('mycourses.index');
 
 Route::middleware('can:access,course,lesson')
     ->get('/curso/{course:slug}/aula/{lesson:slug}', [LessonController::class, 'show'])

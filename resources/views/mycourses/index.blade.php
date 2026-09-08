@@ -3,10 +3,10 @@
 @section('content')
 
     <div class="md:col-span-4">
-        <h1 class="text-3xl font-bold mb-8">Cursos ({{ $courses->count() }})</h1>
+        <h1 class="text-3xl font-bold mb-8">Meus Cursos ({{ $courses->total() }})</h1>
 
         <div class="grid md:grid-cols-3 gap-6">
-            @foreach ($courses as $course)
+            @forelse ($courses as $course)
                 <div class="bg-white rounded-2xl shadow overflow-hidden">
                     <img src="{{ $course['image'] }}" alt="{{ $course['title'] }}" class="w-full h-40 object-cover">
                     <div class="p-5">
@@ -20,7 +20,11 @@
                         </a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-span-full bg-red-500 text-white text-center rounded p-2">
+                    Você ainda não tem nenhum curso!
+                </div>
+            @endforelse
         </div>
         <div class="flex justify-center mt-10">
             {{ $courses->links() }}

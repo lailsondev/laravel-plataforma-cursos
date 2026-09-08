@@ -3,29 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CoursesController extends Controller
+class MyCoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Factory|View
+    public function index()
     {
-        $courses = Course::paginate(5);
+        $courses = Course::join('purchases', 'purchases.course_id', '=', 'courses.id')
+                    ->where('purchases.user_id', Auth::id())
+                    ->where('purchases.payment_status', 'paid')
+                    ->paginate(5);
 
-        return view('courses.index',[
-            'title' => 'Cursos',
-            'courses' => $courses
+        return view('mycourses.index', [
+            'courses' => $courses,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): void
+    public function create()
     {
         //
     }
@@ -33,7 +34,7 @@ class CoursesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): void
+    public function store(Request $request)
     {
         //
     }
@@ -41,7 +42,7 @@ class CoursesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): void
+    public function show(string $id)
     {
         //
     }
@@ -49,7 +50,7 @@ class CoursesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): void
+    public function edit(string $id)
     {
         //
     }
@@ -57,7 +58,7 @@ class CoursesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): void
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -65,7 +66,7 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): void
+    public function destroy(string $id)
     {
         //
     }
