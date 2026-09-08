@@ -25,7 +25,7 @@ class LessonFactory extends Factory
             'slug' => Str::slug($title),
             'description' => $this->faker->paragraph(),
             'duration' => mt_rand(60, 4500),
-            'video_url' => 'https://www.youtube.com/watch?v=rqtZ0EmciJ8',
+            'video_url' => 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4',
         ];
     }
 }
