@@ -31,7 +31,7 @@
                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                 Perfil
             </a>
-            <form action="{{ route('logar.destroy') }}" method="post">
+            <form action="{{ route('logout') }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 cursor-pointer">
@@ -41,6 +41,6 @@
         </div>
     </div>
 @else
-    <a href="{{ route('logar.index') }}" class="hover:text-indigo-600">Entrar</a>
+    <a href="{{ route('login.index') }}" class="hover:text-indigo-600">Entrar</a>
     <a href="{{ route('user.create') }}" class="hover:text-indigo-600">Cadastrar</a>
 @endauth
