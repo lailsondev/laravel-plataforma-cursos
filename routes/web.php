@@ -61,7 +61,7 @@ Route::middleware('guest')->controller(ForgotPasswordController::class)
         Route::put('/esqueci-senha', 'update')->name('forgot-password.update');
     });
 
-Route::middleware('auth')->controller(ProfileController::class)
+Route::middleware(['auth', 'verified'])->controller(ProfileController::class)
     ->prefix('perfil')
     ->name('profile.')
     ->group(function () {

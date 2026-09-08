@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Jobs\UserRegisterJob;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\Factory;
@@ -40,7 +41,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        event(new Registered($user));
+        dispatch(new UserRegisterJob($user));
 
         return redirect()->route('home.index');
     }
